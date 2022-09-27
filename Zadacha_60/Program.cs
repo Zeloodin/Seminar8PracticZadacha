@@ -11,7 +11,21 @@
 // 
 // 26(1,0,1) 55(1,1,1)
 
+using MyClassLibrary;
 
+int lenX = 2, lenY = 2, lenZ = 2;
+double minNum = 10, maxNum = 100;
 
+int[,,] arrayNumbers = ArrayMy.Array3dIntegerRandomNoRepeat(lenX, lenY, lenZ, minNum, maxNum);
 
-
+for (int i = 0; i < lenX; i++)
+{
+    for (int j = 0; j < lenY; j++)
+    {
+        for (int k = 0; k < lenZ; k++)
+        {
+            Console.Write($"{arrayNumbers[i, j, k]}({i},{j},{k}) ");
+        }
+        Console.WriteLine("\n");
+    }
+}

@@ -29,12 +29,12 @@ public class ArrayMy
 
 
 
-        /// Показывает трёхмерный массив.
-    static public void WriteArray3D<T>(T[,] inputArray3D)
+    /// Показывает трёхмерный массив.
+    static public void WriteArray3D<T>(T[,,] inputArray3D)
     {
         int xCount = inputArray3D.GetUpperBound(0) + 1;         // Колличество x
-        int yCount = inputArray3D.Length / xCount;              // Колличество y
-        int zCount = inputArray3D.Length / xCount / yCount;     // Колличество Z
+        int yCount = inputArray3D.GetUpperBound(1) + 1;         // Колличество y
+        int zCount = inputArray3D.GetUpperBound(2) + 1;         // Колличество Z
 
         for (int x = 0; x < xCount; x++)
         {
@@ -42,13 +42,21 @@ public class ArrayMy
             {
                 for (int z = 0; z < zCount; z++)
                 {
-                    Console.Write(inputArray3D[y, x] + " ");
+                    Console.Write(inputArray3D[y, x, z] + " ");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
         }
     }
+
+    /// Создаёт одномерный массив.
+    static public double[] Create1DArray(int xCountRows)
+    {
+        double[] array1D = new double[xCountRows];
+        return array1D;
+    }
+
 
     /// Создаёт двумерный массив.
     static public double[,] Create2DArray(int xCountRows, int yCountCollums)
@@ -64,7 +72,7 @@ public class ArrayMy
         return array3D;
     }
 
-  
+
 
 
     /// Заполняет числами в двумерный массив.
@@ -88,8 +96,8 @@ public class ArrayMy
     static public double[,,] Fill3DArrayToNumbers(double[,,] inputArray3D, double fromMinNumber = 0.0, double toMaxNumber = 10.0, int lengthOfDigitAfterDecimalPoint = 0)
     {
         int xCount = inputArray3D.GetUpperBound(0) + 1;         // Колличество x
-        int yCount = inputArray3D.Length / xCount;              // Колличество y
-        int zCount = inputArray3D.Length / xCount / yCount;     // Колличество Z
+        int yCount = inputArray3D.GetUpperBound(1) + 1;         // Колличество y
+        int zCount = inputArray3D.GetUpperBound(2) + 1;         // Колличество Z
 
         for (int x = 0; x < xCount; x++)
         {
@@ -98,7 +106,7 @@ public class ArrayMy
                 for (int z = 0; z < zCount; z++)
                 {
                     inputArray3D[xCount, yCount, zCount] = RandomMy.RandomNextPlus(lengthOfDigitAfterDecimalPoint, fromMinNumber, toMaxNumber);
-                }            
+                }
             }
         }
         return inputArray3D;
@@ -162,7 +170,7 @@ public class ArrayMy
         }
         if (mode == 0) // Void mode: 0.
         {
-            string[,] array2DStringEmpty = new string[,] {{""},{""}};
+            string[,] array2DStringEmpty = new string[,] { { "" }, { "" } };
             if (numberOfFoundElements > 0)
             {
                 Console.WriteLine($"Элемент для поиска: {elementToFind}, найденно колличество: {numberOfFoundElements}");
@@ -176,32 +184,32 @@ public class ArrayMy
         {
             try
             {
-                string[,] result = new string[,] {{Convert.ToString(inputArray[inputRow, inputCollum])},{""}};
+                string[,] result = new string[,] { { Convert.ToString(inputArray[inputRow, inputCollum]) }, { "" } };
                 return result;
             }
-            catch(System.IndexOutOfRangeException)
+            catch (System.IndexOutOfRangeException)
             {
                 Console.WriteLine("Ошибка. Вышли за рамки границы длины массива.");
             }
         }
 
-        string[,] arrayList = new string[rowsCount,3];
+        string[,] arrayList = new string[rowsCount, 3];
 
         string[] foundElements1DArray = foundElements.Split("[_ss_[_ss_]_ss_]");
 
-        string[] separators = new string[] { "[_ia_[_ia_]_ia_]","[_rc_[_rc_]_rc_]" };
-            
+        string[] separators = new string[] { "[_ia_[_ia_]_ia_]", "[_rc_[_rc_]_rc_]" };
+
         for (int i = 0; i < rowsCount; i++)
-        {   
-             for (int j = 0; i < 3; i++)
+        {
+            for (int j = 0; i < 3; i++)
             {
                 try
                 {
-                    arrayList[i,j] = (Convert.ToString(foundElements1DArray[i])).Split(separators, StringSplitOptions.RemoveEmptyEntries)[j];
+                    arrayList[i, j] = (Convert.ToString(foundElements1DArray[i])).Split(separators, StringSplitOptions.RemoveEmptyEntries)[j];
                 }
                 catch
                 {
-                    arrayList[i,j] = "";
+                    arrayList[i, j] = "";
                 }
             }
         }
@@ -213,7 +221,7 @@ public class ArrayMy
 
 
 
-    static public  double[] Array2DSumRowsAverage<T>(T[,] inputArray2D, int lenOfNumsAftrPoint = 0)
+    static public double[] Array2DSumRowsAverage<T>(T[,] inputArray2D, int lenOfNumsAftrPoint = 0)
     {
         int rowsCount = inputArray2D.GetLength(0);     // Колличество строк
         int collumsCount = inputArray2D.GetLength(1);  // Колличество столбцов
@@ -222,15 +230,15 @@ public class ArrayMy
         {
             for (int row = 0; row < rowsCount; row++)
             {
-                sumAverage[collum] += Convert.ToDouble(inputArray2D[row,collum]);
+                sumAverage[collum] += Convert.ToDouble(inputArray2D[row, collum]);
             }
-            sumAverage[collum] = Math.Round(sumAverage[collum] / Convert.ToDouble(rowsCount),lenOfNumsAftrPoint);
+            sumAverage[collum] = Math.Round(sumAverage[collum] / Convert.ToDouble(rowsCount), lenOfNumsAftrPoint);
         }
         return sumAverage;
     }
 
 
-    static public  double[] Array2DSumCollumsAverage<T>(T[,] inputArray2D, int lenOfNumsAftrPoint = 0)
+    static public double[] Array2DSumCollumsAverage<T>(T[,] inputArray2D, int lenOfNumsAftrPoint = 0)
     {
         int rowsCount = inputArray2D.GetLength(0);     // Колличество строк
         int collumsCount = inputArray2D.GetLength(1);  // Колличество столбцов
@@ -239,11 +247,47 @@ public class ArrayMy
         {
             for (int collum = 0; collum < collumsCount; collum++)
             {
-                sumAverage[row] += Convert.ToDouble(inputArray2D[row,collum]);
+                sumAverage[row] += Convert.ToDouble(inputArray2D[row, collum]);
             }
-            sumAverage[row] = Math.Round(sumAverage[row] / Convert.ToDouble(collumsCount),lenOfNumsAftrPoint);
+            sumAverage[row] = Math.Round(sumAverage[row] / Convert.ToDouble(collumsCount), lenOfNumsAftrPoint);
         }
         return sumAverage;
     }
+
+
+
+
+
+
+
+    static public int[,,] Array3dIntegerRandomNoRepeat(int lenX, int lenY, int lenZ, double minNum, double maxNum)
+    {
+        int[,,] xyzLenghtArray = new int[lenX, lenY, lenZ];
+        int[] arrayNoRepeat = new int[xyzLenghtArray.Length];
+
+        double[] NumberRandomNonRepeat = RandomMy.RandomNonRepeat(CountNum: lenX * lenY * lenZ,
+                                                                        fromMinNumber: minNum,
+                                                                        toMaxNumber: maxNum,
+                                                                        lenghtAfterPoint: 0,
+                                                                        type: "int");
+
+        // int lengthArrayNumberRandom = NumberRandomNonRepeat.Length;
+        int indexOfNumber = 0;
+
+        for (int i = 0; i < lenX; i++)
+        {
+            for (int j = 0; j < lenY; j++)
+            {
+                for (int k = 0; k < lenZ; k++)
+                {
+                    xyzLenghtArray[i, j, k] = Convert.ToInt32(NumberRandomNonRepeat[indexOfNumber]);
+                    indexOfNumber++;
+                }
+            }
+        }
+        return xyzLenghtArray;
+    }
+
+
 
 }

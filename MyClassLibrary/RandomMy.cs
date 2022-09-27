@@ -1,4 +1,7 @@
 namespace MyClassLibrary;
+using System.Linq;
+
+
 public class RandomMy
 {
     static public double[] FillingAnArrayWithConsecutiveNumbers(int numLenght, ref double[] arrNum)
@@ -39,9 +42,58 @@ public class RandomMy
     }
 
 
+
+
     /// RandomNumberGeneratorPlusNumbersAfterDot
     static public double RandomNextPlus(int lengthOfDigitAfterDecimalPoint = 0, double fromMinNumber = 0.0, double toMaxNumber = 10.0)
     {
         return Math.Round(new Random().NextDouble() * (toMaxNumber - fromMinNumber) + fromMinNumber, lengthOfDigitAfterDecimalPoint);
     }
+
+
+
+
+
+    static public double[] RandomNonRepeat(int CountNum = 5, double fromMinNumber = 0.0, double toMaxNumber = 10.0, int lenghtAfterPoint = 0, string type = "int")
+    {
+
+        double[] arrayNumbers = new double[CountNum];
+        for (int i = 0; i < CountNum && i < Math.Abs(toMaxNumber - fromMinNumber); i++)
+        {
+            while (true)
+            {
+                if (i > arrayNumbers.Length)
+                {
+                    arrayNumbers[i] = 0;
+                    break;
+                }
+                var randomNumber = 0.0;
+                if (type.ToLower() == "double") randomNumber = RandomMy.RandomNextPlus(lenghtAfterPoint, fromMinNumber, toMaxNumber);
+                else if (type.ToLower() == "doubleInt") randomNumber = Convert.ToDouble(Convert.ToInt32(RandomMy.RandomNextPlus(lenghtAfterPoint, fromMinNumber, toMaxNumber)));
+                else if (type.ToLower() == "int") randomNumber = new Random().Next(Convert.ToInt32(fromMinNumber), Convert.ToInt32(toMaxNumber));
+                else randomNumber = new Random().Next(Convert.ToInt32(fromMinNumber), Convert.ToInt32(toMaxNumber));
+
+                bool isElementOfArray = false; // Этот элемент, нет в списке.
+                foreach (double isNumberOfArray in arrayNumbers)
+                {
+                    if (isNumberOfArray == randomNumber)
+                    {
+                        isElementOfArray = true; // Если есть элемент в массиве, то, начинаем заново.
+                    }
+                }
+
+                if (isElementOfArray) { }
+                else
+                {
+                    arrayNumbers[i] = randomNumber;
+                    break;
+                }
+            }
+        }
+
+        return arrayNumbers;
+    }
+
+
+
 }

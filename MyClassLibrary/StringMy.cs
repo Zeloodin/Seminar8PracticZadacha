@@ -4,7 +4,7 @@ public class StringMy
 {
     static public string ConsoleRead(string writeText = "")
     {
-        if(writeText != "") Console.Write(writeText);
+        if (writeText != "") Console.Write(writeText);
         return Convert.ToString(Console.Read());
     }
 
