@@ -12,10 +12,10 @@
 // 9 5 3 2
 // 8 4 4 2
 
-using ArrayMy;
+using MyClassLibrary;
 
-int rowCount = 0, collumCount = 0;
-double[,] arrayNumbers = new int[collumCount, rowCount];
+int rowCount = 8, collumCount = 8;
+double[,] arrayNumbers = new double[rowCount, collumCount];
 
 
 
