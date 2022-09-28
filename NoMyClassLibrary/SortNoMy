@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace NoMyClassLibrary;
+public class SortNoMy
+{
+    static void Sort(int[] a)
+    {
+        qSort(a, 0, a.Length - 1);
+    }
+    
+    public static double[] qSort(double[] a, int low, int high)
+    {
+        int i = low;
+        int j = high;
+        int x = a[(low + high) / 2];  // x - опорный элемент посредине между low и high
+        do
+        {
+            while (a[i] < x) ++i;  // поиск элемента для переноса в старшую часть
+            while (a[j] > x) --j;  // поиск элемента для переноса в младшую часть
+            if (i <= j)
+            {
+                // обмен элементов местами:
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+                // переход к следующим элементам:
+                i++; j--;
+            }
+        } while (i < j);
+        if (low < j) qSort(a, low, j);
+        if (i < high) qSort(a, i, high);
+    }
+}

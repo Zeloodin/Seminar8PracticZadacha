@@ -13,6 +13,9 @@
 // 8 4 4 2
 
 using MyClassLibrary;
+using NoMyClassLibrary;
+
+
 
 int rowCount = 3, collumCount = 5;
 double[,] arrayNumbers = new double[rowCount, collumCount];
@@ -25,26 +28,11 @@ Console.WriteLine("\n");
 
 for (int i = 0; i < arrayNumbers.GetLength(0); i++)
 {
-    bool isSort = true;
-    while(isSort)
-    {
-        for (int begStartIndex = 1; begStartIndex < arrayNumbers.GetLength(1); begStartIndex++)
-        {
-            if(arrayNumbers[i, begStartIndex-1] > arrayNumbers[i, begStartIndex])
-            {
-                isSort = true;
-                double tempValue = arrayNumbers[i, begStartIndex-1];
-                arrayNumbers[i, begStartIndex-1] = arrayNumbers[i, begStartIndex];
-                arrayNumbers[i, begStartIndex] = tempValue;
-            }
-            else
-            {
-                isSort = false;
-            }
-        }
+    
 
-        
-    }
+        SortNoMy.qSort(arrayNumbers.GetLength(1), 0, arrayNumbers.GetLength(1) - 1);
+
+    
 }
 
 ArrayMy.WriteArray2D(arrayNumbers);
