@@ -113,10 +113,7 @@ double MovePoint2d(ref double[,] inputArray, ref int pointRow, ref int pointColl
     }
 
     return count;
-
-
 }
-
 
 
 // 0 Up
@@ -124,14 +121,12 @@ double MovePoint2d(ref double[,] inputArray, ref int pointRow, ref int pointColl
 // 2 Down
 // 3 Right
 
-double[,] arraySpiral = ArrayMy.Create2DArray(30720, 17280);
+double[,] arraySpiral = ArrayMy.Create2DArray(4, 4);
 
 int pointX = 0, pointY = 0;
 int[] pozitionPointXY = new int[] { pointX, pointY };
 
 int upledori = 3;
-
-double nowTime = Convert.ToDouble(DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff"));
 for (int i = 1; i <= arraySpiral.GetLength(0) * arraySpiral.GetLength(1); i++)
 {
     pozitionPointXY[0] = pointX;
@@ -139,16 +134,5 @@ for (int i = 1; i <= arraySpiral.GetLength(0) * arraySpiral.GetLength(1); i++)
 
     arraySpiral[pozitionPointXY[0], pozitionPointXY[1]] = MovePoint2d(ref arraySpiral, ref pointX, ref pointY, ref upledori, i);
 }
-double nowTime2 = Convert.ToDouble(DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff"));
 
-double nowTimeStart = nowTime2-nowTime;
-nowTime = Convert.ToDouble(DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff"));
-
-// WriteArray2D(arraySpiral, Convert.ToString(arraySpiral.GetLength(0) * arraySpiral.GetLength(1)).Length);
-
-nowTime2 = Convert.ToDouble(DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff"));
-double nowTimeEnd = nowTime2-nowTime;
-
-Console.WriteLine($"// ArrayMy.Create2DArray({arraySpiral.GetLength(0)},{arraySpiral.GetLength(1)});");
-Console.WriteLine($"// Потребовалось времени на создание {nowTimeStart}, на вывод в консоль {nowTimeEnd}");
-
+WriteArray2D(arraySpiral, Convert.ToString(arraySpiral.GetLength(0) * arraySpiral.GetLength(1)).Length);
