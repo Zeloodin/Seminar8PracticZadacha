@@ -14,9 +14,37 @@
 
 using MyClassLibrary;
 
-int rowCount = 8, collumCount = 8;
+int rowCount = 3, collumCount = 5;
 double[,] arrayNumbers = new double[rowCount, collumCount];
 
+arrayNumbers = ArrayMy.Fill2DArrayToNumbers(arrayNumbers, 0, 10, 0);
 
+ArrayMy.WriteArray2D(arrayNumbers);
+
+Console.WriteLine("\n");
+
+for (int i = 0; i < arrayNumbers.GetLength(0); i++)
+{
+    bool isSort = true;
+    while(isSort)
+    {
+        for (int begStartIndex = 1; begStartIndex < arrayNumbers.GetLength(1); begStartIndex++)
+        {
+            if(arrayNumbers[i, begStartIndex-1] > arrayNumbers[i, begStartIndex])
+            {
+                isSort = true;
+                double tempValue = arrayNumbers[i, begStartIndex-1];
+                arrayNumbers[i, begStartIndex-1] = arrayNumbers[i, begStartIndex];
+                arrayNumbers[i, begStartIndex] = tempValue;
+            }
+            else
+            {
+                isSort = false;
+            }
+        }
+
+        
+    }
+}
 
 ArrayMy.WriteArray2D(arrayNumbers);
