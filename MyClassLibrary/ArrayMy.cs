@@ -293,7 +293,7 @@ public class ArrayMy
 
 
     // Берёт строки из массива.
-    static public double[] array2DGetRow1D(double[,] inputArray, int rowIndex)
+    static public double[] Array2DGetRow1D(double[,] inputArray, int rowIndex)
     {
         int countLenghtCollum = 0;
         string strLenCollum = String.Empty;
@@ -367,7 +367,7 @@ public class ArrayMy
     {
         for (int i = 0; i < input1DArray.GetLength(0); i++)
         {
-            double[] input1DArrayIndexRow = ArrayMy.array2DGetRow1D(input1DArray, i);
+            double[] input1DArrayIndexRow = ArrayMy.Array2DGetRow1D(input1DArray, i);
 
             input1DArrayIndexRow = ArrayMy.Array1DSortUp(input1DArrayIndexRow);
 
@@ -385,7 +385,7 @@ public class ArrayMy
     {
         for (int i = 0; i < input1DArray.GetLength(0); i++)
         {
-            double[] input1DArrayIndexRow = ArrayMy.array2DGetRow1D(input1DArray, i);
+            double[] input1DArrayIndexRow = ArrayMy.Array2DGetRow1D(input1DArray, i);
 
             input1DArrayIndexRow = ArrayMy.Array1DSortDown(input1DArrayIndexRow);
 
@@ -395,6 +395,69 @@ public class ArrayMy
             }
         }
         return input1DArray;
+    }
+
+
+
+
+
+
+
+
+    static public int Array2DFindLenghtRow(double[,] input2DArray, int rowIndex = 0)
+    {
+        int countLenghtRow = 0;
+        try
+        {
+            while (true)
+            {
+                if(input2DArray[rowIndex,countLenghtRow] != null) countLenghtRow++;
+                else countLenghtRow++;
+                
+            }
+        }
+        catch(System.IndexOutOfRangeException)
+        {}
+        return countLenghtRow;
+    }
+
+
+
+
+    static public int Array2DFindLenghtCollum(double[,] input2DArray, int collumIndex = 0)
+    {
+        int countLenghtCollum = 0;
+        try
+        {
+            while (true)
+            {
+                if(input2DArray[countLenghtCollum,collumIndex] != null) countLenghtCollum++;
+                else countLenghtCollum++;
+                
+            }
+        }
+        catch(System.IndexOutOfRangeException)
+        {}
+        return countLenghtCollum;
+    }
+
+
+
+
+    static public double[] AverageSumInEachRowIn2DArray(double[,] input2dArray)
+    {
+        int lenghtCollum = ArrayMy.Array2DFindLenghtCollum(input2dArray, 0);
+        double[] sumRow = new double[lenghtCollum];
+        for (int i = 0; i < lenghtCollum; i++)
+        {
+            int lenghtRow = ArrayMy.Array2DFindLenghtRow(input2dArray, i);
+            for (int j = 0; j < lenghtRow; j++)
+            {
+                sumRow[i] += input2dArray[i,j];
+            }
+            sumRow[i] /= lenghtRow;
+        }
+        return sumRow;
     }
 
 }
