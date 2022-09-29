@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadacha_62", "Zadacha_62\Za
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadacha_54", "Zadacha_54\Zadacha_54.csproj", "{981120C5-B043-4DBE-A50B-FBD42992BEAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoMyLibrary", "NoMyLibrary\NoMyLibrary.csproj", "{2E03BCF6-DFEF-4540-97A2-77911821990F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,13 @@ Global
 		{981120C5-B043-4DBE-A50B-FBD42992BEAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{981120C5-B043-4DBE-A50B-FBD42992BEAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{981120C5-B043-4DBE-A50B-FBD42992BEAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EE8254F-E389-448A-964F-5793C0A4B9AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE8254F-E389-448A-964F-5793C0A4B9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE8254F-E389-448A-964F-5793C0A4B9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE8254F-E389-448A-964F-5793C0A4B9AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E03BCF6-DFEF-4540-97A2-77911821990F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E03BCF6-DFEF-4540-97A2-77911821990F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E03BCF6-DFEF-4540-97A2-77911821990F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E03BCF6-DFEF-4540-97A2-77911821990F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
