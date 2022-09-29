@@ -20,47 +20,20 @@ using NoMyLibrary;
 
 
 
-int rowCount = 3, collumCount = 5;
+int rowCount = 4, collumCount = 4;
 double[,] arrayNumbers = new double[rowCount, collumCount];
 
 arrayNumbers = ArrayMy.Fill2DArrayToNumbers(arrayNumbers, 0, 10, 0);
 
 ArrayMy.WriteArray2D(arrayNumbers);
 
-Console.WriteLine("\n");
-
-double[] arrayNumbersIndexRow = ArrayMy.array2DGetRow1D(arrayNumbers, 0);
-
-ArrayMy.WriteArray(arrayNumbersIndexRow);
 
 
-while (true)
-{
-    bool isSort = true;
-    ArrayMy.WriteArray(arrayNumbersIndexRow, " ");
-    for (int indexCollum = 1; indexCollum < arrayNumbersIndexRow.GetLength(0); indexCollum++)
-    {
-        double firstValue = arrayNumbersIndexRow[indexCollum - 1];  // 2
-        double secondValue = arrayNumbersIndexRow[indexCollum];        // 1
 
-        if (secondValue <= firstValue)
-        {
-            double tempValue = secondValue;
-            secondValue = firstValue;
-            firstValue = tempValue;
-        }
+// arrayNumbers = ArrayMy.Array2DSortUp(arrayNumbers);
+// arrayNumbers = ArrayMy.Array2DSortDown(arrayNumbers);
 
-    }
-    Console.WriteLine();
-
-    // for (int indexCollum = 1; indexCollum < arrayNumbersIndexRow.GetLength(0); indexCollum++)
-    // {
-    //     double selectionValue = arrayNumbersIndexRow[indexCollum] - 1;  // 2
-    //     double compareValue = arrayNumbersIndexRow[indexCollum];        // 1
-    //     if (compareValue >= selectionValue) {}
-    //     else isSort = false;
-    // }
-    // if (isSort == true) break;
-
-}
-
+Console.WriteLine("\nПо возрастанию");
+ArrayMy.WriteArray2D(ArrayMy.Array2DSortUp(arrayNumbers));
+Console.WriteLine("\nПо убыванию");
+ArrayMy.WriteArray2D(ArrayMy.Array2DSortDown(arrayNumbers));

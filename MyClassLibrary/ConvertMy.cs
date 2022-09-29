@@ -81,6 +81,19 @@ public class ConvertMy
     }
 
 
+    static public double[] ConvertArray1DToDouble<T>(T[] inputArray1D)
+    {
+        int rowsCount = inputArray1D.GetLength(0);     // Колличество строк
+        double[] convertedInputArray = new double[rowsCount];
+
+        for (int row = 0; row < rowsCount; row++)
+        {
+            convertedInputArray[row] = Convert.ToDouble(inputArray1D[row]);
+        }
+        return convertedInputArray;
+    }
+
+
 
     static public int[,] ConvertArray2DToInt32<T>(T[,] inputArray2D)
     {
@@ -93,6 +106,23 @@ public class ConvertMy
             for (int collum = 0; collum < collumsCount; collum++)
             {
                 convertedInputArray[row, collum] = Convert.ToInt32(inputArray2D[row, collum]);
+            }
+        }
+        return convertedInputArray;
+    }
+
+
+    static public double[,] ConvertArray2DToDouble<T>(T[,] inputArray2D)
+    {
+        int rowsCount = inputArray2D.GetLength(0);     // Колличество строк
+        int collumsCount = inputArray2D.GetLength(1);  // Колличество столбцов
+        double[,] convertedInputArray = new double[rowsCount, collumsCount];
+
+        for (int row = 0; row < rowsCount; row++)
+        {
+            for (int collum = 0; collum < collumsCount; collum++)
+            {
+                convertedInputArray[row, collum] = Convert.ToDouble(inputArray2D[row, collum]);
             }
         }
         return convertedInputArray;

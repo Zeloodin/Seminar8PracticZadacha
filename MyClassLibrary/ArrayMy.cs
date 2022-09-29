@@ -290,4 +290,111 @@ public class ArrayMy
 
 
 
+
+
+    // Берёт строки из массива.
+    static public double[] array2DGetRow1D(double[,] inputArray, int rowIndex)
+    {
+        int countLenghtCollum = 0;
+        string strLenCollum = String.Empty;
+        try
+        {
+            while (true)
+            {
+                if(countLenghtCollum == 0)
+                {
+                    strLenCollum += inputArray[rowIndex,countLenghtCollum];
+                }
+                else strLenCollum +="\n"+ inputArray[rowIndex,countLenghtCollum];
+                countLenghtCollum++;
+            }
+        }
+        catch(System.IndexOutOfRangeException)
+        {}
+        string[] arrayStrLenCollum = strLenCollum.Split("\n");
+
+        double[] arrayDoubleLenCollum =  ConvertMy.ConvertArray1DToDouble(arrayStrLenCollum);
+        strLenCollum = String.Empty;
+
+        return arrayDoubleLenCollum;
+    }
+
+
+
+    /// TODO UP and DOWN join to ONE
+    static public double[] Array1DSortUp(double[] input1DArray)
+    {
+    while (true)
+        {
+            bool isSort = true;
+            for (int indexCollum = 1; indexCollum < input1DArray.GetLength(0); indexCollum++)
+            {
+                if (input1DArray[indexCollum] < input1DArray[indexCollum - 1])
+                {
+                    isSort = false;
+                    double tempValue = input1DArray[indexCollum];
+                    input1DArray[indexCollum] = input1DArray[indexCollum - 1];
+                    input1DArray[indexCollum - 1] = tempValue;
+                }
+            }
+            if (isSort) return input1DArray;
+        }
+    }
+
+    /// TODO UP and DOWN join to ONE
+    static public double[] Array1DSortDown(double[] input1DArray)
+    {
+    while (true)
+        {
+            bool isSort = true;
+            for (int indexCollum = 1; indexCollum < input1DArray.GetLength(0); indexCollum++)
+            {
+                if (input1DArray[indexCollum] > input1DArray[indexCollum - 1])
+                {
+                    isSort = false;
+                    double tempValue = input1DArray[indexCollum];
+                    input1DArray[indexCollum] = input1DArray[indexCollum - 1];
+                    input1DArray[indexCollum - 1] = tempValue;
+                }
+            }
+            if (isSort) return input1DArray;
+        }
+    }
+
+
+    /// TODO 2D UP and DOWN join to ONE
+    static public double[,] Array2DSortUp(double[,] input1DArray)
+    {
+        for (int i = 0; i < input1DArray.GetLength(0); i++)
+        {
+            double[] input1DArrayIndexRow = ArrayMy.array2DGetRow1D(input1DArray, i);
+
+            input1DArrayIndexRow = ArrayMy.Array1DSortUp(input1DArrayIndexRow);
+
+            for (int j = 0; j < input1DArrayIndexRow.Length; j++)
+            {
+                input1DArray[i,j] = input1DArrayIndexRow[j];
+            }
+        }
+        return input1DArray;
+    }
+
+
+    /// TODO 2D UP and DOWN join to ONE
+    static public double[,] Array2DSortDown(double[,] input1DArray)
+    {
+        for (int i = 0; i < input1DArray.GetLength(0); i++)
+        {
+            double[] input1DArrayIndexRow = ArrayMy.array2DGetRow1D(input1DArray, i);
+
+            input1DArrayIndexRow = ArrayMy.Array1DSortDown(input1DArrayIndexRow);
+
+            for (int j = 0; j < input1DArrayIndexRow.Length; j++)
+            {
+                input1DArray[i,j] = input1DArrayIndexRow[j];
+            }
+        }
+        return input1DArray;
+    }
+
 }
