@@ -13,6 +13,9 @@
 
 using MyClassLibrary;
 
+/// TODO:
+/// Поставить таблицу, а внутри числа.
+
 string IsNumber20(int number)
 {
     switch (number % 20)
